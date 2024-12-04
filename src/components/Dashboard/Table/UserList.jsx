@@ -61,7 +61,7 @@ export default function UserList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="overflow-x-auto h-screen">
+    <div className="overflow-x-auto h-[calc(100vh-170px)]">
       <table className="min-w-full table-auto border-collapse">
         <thead>
           <tr className="bg-gray-900 text-white text-left">

@@ -13,7 +13,7 @@ const DropdownUser = () => {
       <Link
         onClick={() => setDropdownOpen(!dropdownOpen)}
         className="flex items-center gap-4"
-        to="/profile"
+        to="/personalinformation"
       >
         <span className="h-12 w-12 rounded-full">
           <img src={UserOne} alt="User" />

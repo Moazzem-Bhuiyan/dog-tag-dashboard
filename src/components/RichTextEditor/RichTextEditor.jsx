@@ -33,7 +33,7 @@ const FullScreenRichTextEditor = () => {
   };
 
   return (
-    <div className="w-full h-full  bg-gray-50">
+    <div className="w-full h-[calc(100vh-170px)]  bg-gray-50">
       <JoditEditor
         ref={editor}
         value={content}

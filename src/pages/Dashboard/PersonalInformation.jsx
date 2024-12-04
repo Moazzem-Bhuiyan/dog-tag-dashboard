@@ -1,4 +1,3 @@
-import { Input } from "antd";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -10,7 +9,9 @@ const PersonalInformation = () => {
   };
 
   return (
-    <div className="p-8 text-white min-h-screen flex items-center justify-center">
+    <div className="">
+
+    <div className="p-8 text-white h-[calc(100vh-170px)] flex items-center justify-center">
       <div className=" border rounded-lg shadow-md w-full lg:max-w-3xl p-6">
         <h2 className="text-xl font-semibold mb-6">Personal Information</h2>
 
@@ -79,6 +80,8 @@ const PersonalInformation = () => {
           </div>
         </div>
       </div>
+    </div>
+
     </div>
   );
 };

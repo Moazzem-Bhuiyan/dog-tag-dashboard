@@ -10,7 +10,7 @@ const ForgetPasswordForm = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
-  const {setOtpEmail} = useContext(AuthContext)
+  const { setOtpEmail } = useContext(AuthContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -28,8 +28,8 @@ const ForgetPasswordForm = () => {
         "http://localhost:5001/api/user/admin/forgot-password",
         { email }
       );
-      console.log(response.data)
-      setOtpEmail(email)
+      console.log(response.data);
+      setOtpEmail(email);
 
       // Show success message
       toast.success("Verification email sent. Please check your inbox.");
@@ -38,7 +38,8 @@ const ForgetPasswordForm = () => {
       navigate("/auth/verifyOTP");
     } catch (err) {
       // Show error message
-      const errorMessage = err.response?.data?.message || "Something went wrong!";
+      const errorMessage =
+        err.response?.data?.message || "Something went wrong!";
       toast.error(errorMessage);
       setError(errorMessage);
     } finally {
@@ -47,23 +48,14 @@ const ForgetPasswordForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FFFDFA]">
+    <div className="min-h-screen flex items-center justify-center bg-[#3A3C3B]">
       <div className="flex flex-col md:flex-row items-center rounded-lg p-8 w-full h-[500px] max-w-7xl">
-        {/* Logo Section */}
-        <div className="flex-1 flex flex-col items-center justify-center mb-8 md:mb-0">
-          <img
-            src={login_image}
-            alt="Logo"
-            className="w-[483px] h-[280px] mb-4"
-          />
-        </div>
-
         {/* Form Section */}
-        <div className="flex-1 w-full max-w-md">
-          <h2 className="text-5xl font-medium mb-4 text-[#364636] text-center">
+        <div className="flex-1 w-full max-w-lg mx-auto bg-black-2 p-10 rounded-lg border-2 border-white text-white ">
+          <h2 className="text-lg font-medium mb-4 text-white text-center ">
             Forgot Password
           </h2>
-          <p className="text-[#364636] mb-6 text-sm font-medium text-center">
+          <p className="text-white mb-6 text-sm font-medium text-center">
             Please enter your registered email to receive a verification code
           </p>
 
@@ -74,7 +66,7 @@ const ForgetPasswordForm = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Email
               </label>
@@ -84,7 +76,7 @@ const ForgetPasswordForm = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your-email@example.com"
-                className="w-full p-3 border-2 border-[#8CAB91] bg-none rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-3 border-2 border-black-2 bg-none rounded-lg focus:outline-none focus:ring-2 focus:ring-black-2"
                 required
               />
             </div>
@@ -93,13 +85,15 @@ const ForgetPasswordForm = () => {
             <button
               type="submit"
               disabled={loading} // Disable the button when loading
-              className={`w-[430px] h-12 py-4 px-8 bg-[#8CAB91] text-[#FAF1E6] hover:text-white rounded-3xl text-base flex items-center justify-center ${
-                loading ? "opacity-75 cursor-not-allowed" : "hover:scale-105 duration-200"
+              className={`w-[430px] h-12 py-4 px-8 bg-white text-black  rounded-3xl text-base flex items-center justify-center ${
+                loading
+                  ? "opacity-75 cursor-not-allowed"
+                  : "hover:scale-105 duration-200"
               }`}
             >
               {loading ? (
                 <svg
-                  className="animate-spin h-5 w-5 text-white"
+                  className="animate-spin h-5 w-5 text-black-2"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"

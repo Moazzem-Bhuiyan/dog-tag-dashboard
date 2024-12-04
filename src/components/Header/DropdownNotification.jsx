@@ -20,7 +20,7 @@ const DropdownNotification = () => {
         >
           {/* Notification Badge */}
           {notifying && (
-            <span className="absolute top-3 right-3 flex h-4 w-4 items-center justify-center rounded-full bg-[#8CAB91] text-xs font-bold text-white">
+            <span className="absolute top-3 right-3 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs font-bold text-white">
               1
             </span>
           )}

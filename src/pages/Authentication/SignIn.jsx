@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
-import login_image from "../../images/login/login_page_logo.png";
+
 import { IoEyeOffOutline } from "react-icons/io5";
 import { FaRegEye } from "react-icons/fa";
 const SignIn = () => {
@@ -22,60 +22,54 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:5001/api/user/admin/login",
-        {
-          email,
-          password,
-        }
-      );
 
-      console.log(response.data);
-      const {
-        _id,
-        firstname,
-        lastname,
-        profilePicture,
-        email: userEmail,
-        role,
-        token,
-      } = response.data;
+    // try {
+    //   const response = await axios.post(
+    //     "http://localhost:5001/api/user/admin/login",
+    //     {
+    //       email,
+    //       password,
+    //     }
+    //   );
 
-      // Save user data in context and localStorage
-      login({
-        id: _id,
-        firstname,
-        lastname,
-        profilePicture,
-        email: userEmail,
-        role,
-        token,
-      });
-      navigate("/"); // Redirect to dashboard
-    } catch (err) {
-      setError("Invalid credentials. Please try again.");
-    }
+    //   console.log(response.data);
+    //   const {
+    //     _id,
+    //     firstname,
+    //     lastname,
+    //     profilePicture,
+    //     email: userEmail,
+    //     role,
+    //     token,
+    //   } = response.data;
+
+    //   // Save user data in context and localStorage
+    //   login({
+    //     id: _id,
+    //     firstname,
+    //     lastname,
+    //     profilePicture,
+    //     email: userEmail,
+    //     role,
+    //     token,
+    //   });
+    //   navigate("/"); // Redirect to dashboard
+    // } catch (err) {
+    //   setError("Invalid credentials. Please try again.");
+    // }
+    console.log("Email:", email);
+    console.log("Password:", password);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FFFDFA]">
+    <div className="min-h-screen flex items-center justify-center bg-[#3A3C3B]">
       <div className="flex flex-col md:flex-row items-center rounded-lg p-8 w-full h-[500px] max-w-7xl">
-        {/* Logo Section */}
-        <div className="flex-1 flex flex-col items-center justify-center mb-8 md:mb-0">
-          <img
-            src={login_image}
-            alt="Logo"
-            className="w-[483px] h-[280px] mb-4"
-          />
-        </div>
-
         {/* Login Form Section */}
-        <div className="flex-1 w-full max-w-md ">
-          <h2 className="text-5xl font-medium mb-4 text-#364636 text-center">
-            Login To Account
+        <div className="flex-1 w-full max-w-lg mx-auto border-2 p-10 border-white rounded-lg bg-black-2 ">
+          <h2 className="text-lg font-medium mb-4 text-white text-center">
+            Login to account
           </h2>
-          <p className="text-[#364636] mb-6 text-sm font-medium text-center">
+          <p className="text-white mb-6 text-sm font-medium text-center">
             Please enter your email and password to continue
           </p>
           {error && <p className="text-red-500 mb-2">{error}</p>}
@@ -85,7 +79,7 @@ const SignIn = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Email
               </label>
@@ -95,7 +89,7 @@ const SignIn = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your-email@example.com"
-                className="w-full p-3 border-2 border-[#8CAB91] bg-none rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-3 border-2 text-black border-[#ffff] bg-none rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
                 required
               />
             </div>
@@ -104,7 +98,7 @@ const SignIn = () => {
             <div className="relative">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Password
               </label>
@@ -114,13 +108,13 @@ const SignIn = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="********"
-                className="w-full p-3 border-2 border-[#8CAB91] bg-none rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-3 border-2 text-black border-[#ffff] bg-none rounded-lg focus:outline-none focus:ring-2 focus:ring-black-2"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute top-11 transform -translate-y-1/2 right-4 text-gray-500"
+                className="absolute top-11 transform -translate-y-1/2 right-4 text-black-2"
               >
                 {showPassword ? <FaRegEye /> : <IoEyeOffOutline />}
               </button>
@@ -133,7 +127,7 @@ const SignIn = () => {
                   type="checkbox"
                   className="form-checkbox text-green-600 border-gray-300 rounded"
                 />
-                <span className="ml-2 text-gray-700">Remember Password</span>
+                <span className="ml-2 text-white">Remember Password</span>
               </label>
               <Link
                 to={"/auth/forgetPassword"}
@@ -146,7 +140,7 @@ const SignIn = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-[430px] h-12 py-4 px-8 bg-[#8CAB91] text-[#FAF1E6] hover:text-white rounded-3xl text-base flex items-center justify-center hover:scale-105 duration-200"
+              className="w-[430px] h-12 py-4 px-8 bg-white text-black  rounded-3xl text-base flex items-center justify-center hover:scale-105 duration-200"
             >
               Sign In
             </button>
