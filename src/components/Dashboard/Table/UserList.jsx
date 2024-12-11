@@ -5,6 +5,7 @@ import CustomModal from "../../CustomModal/CustomModal";
 import { Button } from "antd";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { MdDeleteForever } from "react-icons/md";
+import Swal from "sweetalert2";
 
 export default function UserList() {
   const data = [
@@ -60,6 +61,32 @@ export default function UserList() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+const handledelete = () => {
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
+      });
+    }
+  });
+
+
+
+
+
+};
+
   return (
     <div className="overflow-x-auto h-[calc(100vh-170px)]">
       <table className="min-w-full table-auto border-collapse">
@@ -97,7 +124,7 @@ export default function UserList() {
                 >
                   <FaEye />
                 </button>
-                <button className=" text-xl text-black">
+                <button onClick={handledelete} className=" text-xl text-black">
                   <MdDeleteForever />
                 </button>
 

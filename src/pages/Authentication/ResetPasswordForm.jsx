@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { IoEyeOffOutline } from "react-icons/io5";
 import login_image from "../../images/login/login_page_logo.png";
-import { AuthContext } from "../../context/AuthContext";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
@@ -12,7 +12,7 @@ const ResetPasswordForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { otpEmail } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   // Validation states
@@ -58,19 +58,23 @@ const ResetPasswordForm = () => {
       return;
     }
 
-    try {
-      const response = await axios.post(
-        "http://localhost:5001/api/user/admin/set-new-password",
-        { email: otpEmail, newPassword }
-      );
 
-      toast.success(response.data.message || "Password updated successfully.");
-      navigate("/auth/congratulations");
-    } catch (err) {
-      const errorMessage =
-        err.response?.data?.message || "Failed to update password. Try again.";
-      toast.error(errorMessage);
-    }
+    // try {
+    //   const response = await axios.post(
+    //     "http://localhost:5001/api/user/admin/set-new-password",
+    //     { email: otpEmail, newPassword }
+    //   );
+
+    //   toast.success(response.data.message || "Password updated successfully.");
+    //   navigate("/auth/congratulations");
+    // } catch (err) {
+    //   const errorMessage =
+    //     err.response?.data?.message || "Failed to update password. Try again.";
+    //   toast.error(errorMessage);
+    // }
+
+
+    
   };
 
   return (

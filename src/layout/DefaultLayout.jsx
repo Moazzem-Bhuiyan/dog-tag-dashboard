@@ -2,17 +2,12 @@ import React, { useState, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header/index.jsx";
 import Sidebar from "../components/Sidebar/index.jsx";
-import { AuthContext } from "../context/AuthContext.jsx";
+
 
 const DefaultLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // const { auth } = useContext(AuthContext);
-
-  // if (!auth?.token) {
-  //   return null; // Render nothing if the user is not authenticated
-  // }
-
+ 
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}

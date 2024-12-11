@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
-import login_image from "../../images/login/login_page_logo.png";
+
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
 const VerificationCode = () => {
   const [code, setCode] = useState(new Array(6).fill(""));
-  const { otpEmail } = useContext(AuthContext); // Get email from context
+   // Get email from context
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false); // For button loading state
 
@@ -75,24 +75,28 @@ const VerificationCode = () => {
       return;
     }
 
-    try {
-      setIsLoading(true); // Start loading state
-      // API call to verify OTP
-      const response = await axios.post(
-        "http://localhost:5001/api/user/verify-code",
-        { email: otpEmail, code: otp } // Send both email and OTP
-      );
-      // Success: Redirect to reset-password route
-      toast.success(response?.data?.message);
-      navigate("/auth/reset-password");
-    } catch (err) {
-      // Error: Show error message
-      const errorMessage =
-        err.response?.data?.message || "Invalid OTP. Please try again.";
-      toast.error(errorMessage);
-    } finally {
-      setIsLoading(false); // End loading state
-    }
+
+
+    // try {
+    //   setIsLoading(true); // Start loading state
+    //   // API call to verify OTP
+    //   const response = await axios.post(
+    //     "http://localhost:5001/api/user/verify-code",
+    //     { email: otpEmail, code: otp } // Send both email and OTP
+    //   );
+    //   // Success: Redirect to reset-password route
+    //   toast.success(response?.data?.message);
+    //   navigate("/auth/reset-password");
+    // } catch (err) {
+    //   // Error: Show error message
+    //   const errorMessage =
+    //     err.response?.data?.message || "Invalid OTP. Please try again.";
+    //   toast.error(errorMessage);
+    // } finally {
+    //   setIsLoading(false); // End loading state
+    // }
+
+    
   };
 
   return (

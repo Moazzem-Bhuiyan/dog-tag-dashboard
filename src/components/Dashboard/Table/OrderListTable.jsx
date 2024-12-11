@@ -1,81 +1,82 @@
-import {FaEye} from "react-icons/fa";
-import React, {useState} from "react";
+import {useState} from "react";
+import {FaArrowRight, FaEye} from "react-icons/fa"; // For the eye icon
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 import CustomModal from "../../CustomModal/CustomModal";
 import {Button} from "antd";
 
-export default function RecentSellingProducts() {
+export default function OrderListTable() {
      const data = [
           {
-               serial: "#02",
-               product: "Oreowate wh..",
-               email: "info@gmail.com",
+               ProductName: "lazer",
+               orderid: "#fff",
                date: "11 Oct 24, 11:10PM",
+               customerName: "Kevin D.",
+               status: "ongoing",
                amount: "$152",
-          },
-          {
-               serial: "#03",
-               product: "Oreowate wh..",
-               email: "info@gmail.com",
-               date: "11 Oct 24, 11:10PM",
-               amount: "$152",
-          },
-          {
-               serial: "#04",
-               product: "Oreowate wh..",
-               email: "info@gmail.com",
-               date: "11 Oct 24, 11:10PM",
-               amount: "$152",
-          },
-          {
-               serial: "#05",
-               product: "Oreowate wh..",
-               email: "info@gmail.com",
-               date: "11 Oct 24, 11:10PM",
-               amount: "$152",
-          },
-          {
-               serial: "#06",
-               product: "Oreowate wh..",
-               email: "info@gmail.com",
-               date: "11 Oct 24, 11:10PM",
-               amount: "$152",
+               Action: "Ongoing",
           },
      ];
+
+     const [currentPage, setCurrentPage] = useState(1);
+     const rowsPerPage = 10;
+
+     // Calculate the range of data for the current page
+     const startIndex = (currentPage - 1) * rowsPerPage;
+     const endIndex = startIndex + rowsPerPage;
+     const paginatedData = data.slice(startIndex, endIndex);
+
+     // Calculate total pages
+     const totalPages = Math.ceil(data.length / rowsPerPage);
+
+     // Handle page change
+     const handlePageChange = (pageNumber) => {
+          setCurrentPage(pageNumber);
+     };
+
+     const pageNumbers = [];
+     for (let i = 1; i <= totalPages; i++) {
+          pageNumbers.push(i);
+     }
+
+     // modal
 
      const [isModalOpen, setIsModalOpen] = useState(false);
 
      return (
-          <div className="overflow-x-auto">
-               <h1 className=" text-2xl font-semibold text-white my-2">
-                    Recent Selling Products
-               </h1>
+          <div className="overflow-x-auto h-[calc(100vh-170px)]">
                <table className="min-w-full table-auto border-collapse">
                     <thead>
                          <tr className="bg-gray-900 text-white text-left">
-                              <th className="px-6 py-3">Serial</th>
-                              <th className="px-6 py-3">Product</th>
-                              <th className="px-6 py-3">Email</th>
-                              <th className="px-6 py-3">Date</th>
-                              <th className="px-6 py-3">Amount</th>
+                              <th className="px-6 py-3">Product Name</th>
+                              <th className="px-6 py-3">Order Id</th>
+                              <th className="px-6 py-3">Time & Date</th>
+                              <th className="px-6 py-3">Customer name </th>
+                              <th className="px-6 py-3">Status</th>
+                              <th className="px-6 py-3">Ammount</th>
                               <th className="px-6 py-3 text-center">Action</th>
                          </tr>
                     </thead>
                     <tbody className="bg-gray-200">
-                         {data.map((item, index) => (
+                         {paginatedData.map((item, index) => (
                               <tr
                                    key={index}
                                    className="border-b border-gray-300 hover:bg-gray-100">
-                                   <td className="px-6 py-3">{item.serial}</td>
-                                   <td className="px-6 py-3 flex items-center gap-2">
-                                        <img
-                                             src="/src/images/DogtagProduct/product.png"
-                                             alt="Product"
-                                             className="w-8 h-8 object-cover rounded"
-                                        />
-                                        <span>{item.product}</span>
+                                   <td className="px-6 py-3">
+                                        {item.ProductName}
                                    </td>
-                                   <td className="px-6 py-3">{item.email}</td>
+                                   <td className="px-6 py-3 flex items-center gap-2">
+                                        {/* <img
+                  src="/src/images/placeholder-avatar.png" // Placeholder image for customer
+                  alt="Customer"
+                  className="w-8 h-8 object-cover rounded-full"
+                /> */}
+                                        <span>{item.orderid}</span>
+                                   </td>
                                    <td className="px-6 py-3">{item.date}</td>
+                                   <td className="px-6 py-3">
+                                        {item.customerName}
+                                   </td>
+                                   <td className="px-6 py-3">{item.status}</td>
                                    <td className="px-6 py-3">{item.amount}</td>
                                    <td className="px-6 py-3 text-center">
                                         <button
@@ -85,6 +86,7 @@ export default function RecentSellingProducts() {
                                              className="text-gray-700 hover:text-gray-900">
                                              <FaEye />
                                         </button>
+
                                         <CustomModal
                                              content={
                                                   <>
@@ -169,6 +171,44 @@ export default function RecentSellingProducts() {
                          ))}
                     </tbody>
                </table>
+
+               {/* Pagination Controls */}
+               <div className="flex justify-end mt-4">
+                    <div className="flex items-center space-x-2">
+                         <button
+                              onClick={() =>
+                                   currentPage > 1 &&
+                                   handlePageChange(currentPage - 1)
+                              }
+                              disabled={currentPage === 1}
+                              className="px-3 py-1 border text-white rounded disabled:bg-gray-400">
+                              <IoIosArrowBack />
+                         </button>
+
+                         {pageNumbers.map((number) => (
+                              <button
+                                   key={number}
+                                   onClick={() => handlePageChange(number)}
+                                   className={`px-3 py-1 rounded ${
+                                        currentPage === number
+                                             ? "bg-[#404140] text-white border"
+                                             : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                                   }`}>
+                                   {number}
+                              </button>
+                         ))}
+
+                         <button
+                              onClick={() =>
+                                   currentPage < totalPages &&
+                                   handlePageChange(currentPage + 1)
+                              }
+                              disabled={currentPage === totalPages}
+                              className="px-3 py-1 border text-white  rounded disabled:bg-gray-400">
+                              <IoIosArrowForward />
+                         </button>
+                    </div>
+               </div>
           </div>
      );
 }

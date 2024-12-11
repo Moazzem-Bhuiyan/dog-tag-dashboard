@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import login_image from "../../images/login/login_page_logo.png";
-import { AuthContext } from "../../context/AuthContext";
+
 
 const ForgetPasswordForm = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
-  const { setOtpEmail } = useContext(AuthContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -22,29 +22,35 @@ const ForgetPasswordForm = () => {
     }
 
     setLoading(true); // Set loading to true
-    try {
-      // API Call
-      const response = await axios.post(
-        "http://localhost:5001/api/user/admin/forgot-password",
-        { email }
-      );
-      console.log(response.data);
-      setOtpEmail(email);
 
-      // Show success message
-      toast.success("Verification email sent. Please check your inbox.");
 
-      // Redirect to OTP verification route
-      navigate("/auth/verifyOTP");
-    } catch (err) {
-      // Show error message
-      const errorMessage =
-        err.response?.data?.message || "Something went wrong!";
-      toast.error(errorMessage);
-      setError(errorMessage);
-    } finally {
-      setLoading(false); // Reset loading state
-    }
+
+    
+
+
+    // try {
+    //   // API Call
+    //   const response = await axios.post(
+    //     "http://localhost:5001/api/user/admin/forgot-password",
+    //     { email }
+    //   );
+    //   console.log(response.data);
+    //   setOtpEmail(email);
+
+    //   // Show success message
+    //   toast.success("Verification email sent. Please check your inbox.");
+
+    //   // Redirect to OTP verification route
+    //   navigate("/auth/verifyOTP");
+    // } catch (err) {
+    //   // Show error message
+    //   const errorMessage =
+    //     err.response?.data?.message || "Something went wrong!";
+    //   toast.error(errorMessage);
+    //   setError(errorMessage);
+    // } finally {
+    //   setLoading(false); // Reset loading state
+    // }
   };
 
   return (

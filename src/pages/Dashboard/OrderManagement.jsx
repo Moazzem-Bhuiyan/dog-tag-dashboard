@@ -1,12 +1,12 @@
 import React from "react";
-import UserTable from "../../components/Dashboard/Table/UserTable";
+import OrderListTable from "../../components/Dashboard/Table/OrderListTable";
 
 const OrderManagement = () => {
-  return (
-    <div className=" h-screen">
-      <UserTable isOrderManagement={true} />
-    </div>
-  );
+     return (
+          <div className="overflow-x-auto h-[calc(100vh-170px)]">
+               <OrderListTable />
+          </div>
+     );
 };
 
 export default OrderManagement;

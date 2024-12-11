@@ -178,7 +178,7 @@ export default function EarningsTable() {
     setCurrentPage(pageNumber);
   };
 
-  // Pagination button range (e.g. 1, 2, 3, ..., totalPages)
+ 
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);

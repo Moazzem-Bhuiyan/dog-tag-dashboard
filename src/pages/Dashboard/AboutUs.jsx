@@ -2,7 +2,7 @@ import React, {useRef} from "react";
 
 import JoditEditor from "jodit-react";
 
-const PrivacyAndPolicy = () => {
+const AboutUs = () => {
      const editor = useRef(null);
      const [content, setContent] = React.useState("");
 
@@ -27,14 +27,16 @@ const PrivacyAndPolicy = () => {
           placeholder: "Start typing here...",
      };
 
+     // get value from editor-------------------------------------------------------
+
      const handleShowContent = () => {
           console.log(content);
      };
 
      return (
-          <div>
-               <p className="text-3xl font-bold mb-8 text-white ">
-                    Privacy and policy
+          <div className="h-[calc(100vh-170px)]">
+               <p className="text-3xl font-bold mb-8 text-white">
+           About us :
                </p>
                <div className="w-full h-[calc(100vh-170px)]  bg-gray-50">
                     <JoditEditor
@@ -58,4 +60,4 @@ const PrivacyAndPolicy = () => {
      );
 };
 
-export default PrivacyAndPolicy;
+export default AboutUs;

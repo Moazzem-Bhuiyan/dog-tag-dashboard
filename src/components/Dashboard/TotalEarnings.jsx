@@ -69,7 +69,7 @@ const dataByYear = {
   ],
 };
 
-const SubscriberGrowth = () => {
+const TotalEarnings = () => {
   const [selectedYear, setSelectedYear] = useState("2024");
 
   const handleYearChange = (event) => {
@@ -104,4 +104,4 @@ const SubscriberGrowth = () => {
   );
 };
 
-export default SubscriberGrowth;
+export default TotalEarnings;
