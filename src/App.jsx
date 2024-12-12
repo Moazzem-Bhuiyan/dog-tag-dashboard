@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import TermsAndCondition from "./pages/Dashboard/TermsAndCondition";
 import PrivacyAndPolicy from "./pages/Dashboard/PrivacyAndPolicy";
 import SignIn from "./pages/Authentication/SignIn";
-import PrivateRoute from "./Private/PrivateRoutes";
+
 import OrderManagement from "./pages/Dashboard/OrderManagement";
 
 import ForgotPassword from "./pages/Authentication/ForgotPasswordForm";
@@ -57,13 +57,8 @@ function Routers() {
                />
 
                {/* Private Routes */}
-               <Route
-                    path="/"
-                    element={
-                         <PrivateRoute>
-                              <DefaultLayout />
-                         </PrivateRoute>
-                    }>
+               
+               <Route path="/" element={<DefaultLayout />}>
                     <Route
                          index
                          element={

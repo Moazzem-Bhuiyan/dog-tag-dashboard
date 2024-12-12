@@ -403,10 +403,11 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
                          </ul>
                     </nav>
 
+
                     {/* Sidebar Menu */}
 
                     <button
-                         className="absolute bottom-20 right-20 flex items-center justify-center gap-1 cursor-pointer"
+                         className="absolute bottom-20 left-5 flex items-center justify-center gap-1 cursor-pointer"
                          onClick={handleLogout} // Attach the logout handler
                     >
                          <BiLogOut className="text-red-500 text-2xl rotate-180" />
